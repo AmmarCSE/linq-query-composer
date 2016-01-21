@@ -40,7 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="GridAttributes\GridEntityPropertyAttribute.cs" />
+    <Compile Include="GridData\GridDataBuilder.cs" />
+    <Compile Include="GridHelpers\GridLambdaExpressionHelper.cs" />
+    <Compile Include="GridHelpers\GridPropertyHelper.cs" />
+    <Compile Include="GridResources\GridModel.cs" />
+    <Compile Include="GridResources\IGridModel.cs" />
+    <Compile Include="LamdaFilters\FilterData\FilterDataHelper.cs" />
+    <Compile Include="LamdaFilters\FilterData\LambdaHelper\LambdaExpressionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchResources\SearchAssembler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

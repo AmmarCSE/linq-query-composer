@@ -15,7 +15,6 @@ namespace Travel.Agency.RazorGrid.GridResources
     using System.Linq;
 
     using Travel.Agency.RazorGrid.LambdaFilters;
-    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
 
     /// <summary>
     /// The grid model.

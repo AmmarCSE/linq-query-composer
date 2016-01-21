@@ -3,14 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Html;
-    using System.Web.Script.Serialization;
 
     using Travel.Agency.RazorGrid.GridResources;
     using Travel.Agency.RazorGrid.Helpers;
-    using Travel.Agency.RazorGrid.LambdaFilters.LambdaFilterResources.FilterModels;
-    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
     using Travel.Agency.RazorGrid.SearchResources;
 
     public class SearchAssembler

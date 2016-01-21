@@ -16,7 +16,6 @@ namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData
     using System.Reflection;
     using Travel.Agency.EntityFramework;
     using Travel.Agency.RazorGrid.LambdaFilters.FilterData.LambdaHelper;
-    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
 
     /// <summary>
     /// The filter data helper.
