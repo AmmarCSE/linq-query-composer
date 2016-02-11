@@ -26,6 +26,10 @@ namespace Travel.Agency.RazorGrid.Helpers
     /// </summary>
     public static class GridPropertyHelper
     {
+        public static List<PropertyInfo> ExtractQuickSearchProperties<TModel>()
+        {
+            return typeof(TModel).GetProperties().Where(p => Attribute.IsDefined(p, typeof(QuickSearchAttribute), false)).ToList();
+        }
         /// <summary>
         /// The extract grid model properties.
         /// </summary>
@@ -81,79 +85,6 @@ namespace Travel.Agency.RazorGrid.Helpers
         public static IList<PropertyInfo> ExtractNonKeyProperties(IList<PropertyInfo> properties)
         {
             return properties = properties.Where(p => !Attribute.IsDefined(p, typeof(KeyAttribute), false)).ToList();
-        }
-
-        /// <summary>
-        /// The extract quick search properties.
-        /// </summary>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <returns>
-        /// The List.
-        /// </returns>
-        public static List<PropertyInfo> ExtractQuickSearchProperties<TModel>()
-        {
-            return typeof(TModel).GetProperties().Where(p => Attribute.IsDefined(p, typeof(QuickSearchAttribute), false)).ToList();
-        }
-
-        /// <summary>
-        /// The retrieve html attributes.
-        /// </summary>
-        /// <param name="property">
-        /// The property.
-        /// </param>
-        /// <returns>
-        /// The Dictionary.
-        /// </returns>
-        public static Dictionary<string, object> RetrieveHtmlAttributes(PropertyInfo property)
-        {
-            Dictionary<string, object> htmlAttributes = RetrieveParentHtmlAttributes(property);
-            GridHtmlAttribute[] attributes = (GridHtmlAttribute[])property.GetCustomAttributes(typeof(GridHtmlAttribute), false);
-
-            foreach (var attribute in attributes)
-            {
-                htmlAttributes.Add(attribute.Attr, attribute.AttrVal);
-            }
-
-            return htmlAttributes;
-        }
-
-        /// <summary>
-        /// The retrieve parent html attributes.
-        /// </summary>
-        /// <param name="property">
-        /// The property.
-        /// </param>
-        /// <returns>
-        /// The Dictionary.
-        /// </returns>
-        public static Dictionary<string, object> RetrieveParentHtmlAttributes(PropertyInfo property)
-        {
-            // Type t = property.ReflectedType;
-            Dictionary<string, object> htmlAttributes = new Dictionary<string, object>();
-            /*GridReadonlyAttribute[] attributes = (GridReadonlyAttribute[])t.GetCustomAttributes(typeof(GridReadonlyAttribute), false);
-            if (attributes.Length > 0)
-            {*/
-                htmlAttributes.Add("readonly", "readonly");
-
-            // }
-            return htmlAttributes;
-        }
-
-        /// <summary>
-        /// The retrieve action attributes.
-        /// </summary>
-        /// <typeparam name="TGridModel">
-        /// </typeparam>
-        /// <returns>
-        /// The Dictionary.
-        /// </returns>
-        public static Dictionary<string, object> RetrieveActionAttributes<TGridModel>()
-        {
-            GridActionAttribute[] attributes =
-                (GridActionAttribute[])typeof(TGridModel).GetCustomAttributes(typeof(GridActionAttribute), false);
-
-            return attributes.ToDictionary(attribute => attribute.Action, attribute => attribute.ActionVal);
         }
 
         /// <summary>
@@ -223,92 +154,6 @@ namespace Travel.Agency.RazorGrid.Helpers
             }
 
             return (int)typeCode;
-        }
-
-        /// <summary>
-        /// The get extra css class.
-        /// </summary>
-        /// <param name="Data">
-        /// The data.
-        /// </param>
-        /// <param name="RowIndex">
-        /// The row index.
-        /// </param>
-        /// <param name="FieldName">
-        /// The Field Name.
-        /// </param>
-        /// <typeparam name="TGridModel">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
-        public static string GetExtraCssClass<TGridModel>(
-            IList<TGridModel> Data, int RowIndex, string FieldName)
-        {
-            string strOtherClassCss = string.Empty;
-            Type DataType = Data[RowIndex].GetType();
-            IList<PropertyInfo> props = new List<PropertyInfo>(DataType.GetProperties());
-            PropertyInfo objPropertyInfo = props.FirstOrDefault(x => x.Name == FieldName);
-            if (objPropertyInfo != null)
-            {
-                CssWithConditionAttribute[] AddClassCssWithCondition =
-                    (CssWithConditionAttribute[])objPropertyInfo.GetCustomAttributes(typeof(CssWithConditionAttribute), false);
-
-                if (AddClassCssWithCondition.Any())
-                {
-                    object objFieldValue = objPropertyInfo.GetValue(Data[RowIndex], null);
-
-                    if (objFieldValue != null)
-                    {
-                        CssWithConditionAttribute objClassCssWithCondition =
-                            AddClassCssWithCondition.FirstOrDefault(
-                                m => props.Any(x => x.Name == FieldName && m.ShouldEqual == objFieldValue.ToString()));
-                        if (objClassCssWithCondition != null
-                            && objClassCssWithCondition.ShouldEqual == objFieldValue.ToString())
-                        {
-                            strOtherClassCss = " " + objClassCssWithCondition.ClassName;
-                        }
-                    }
-                }
-            }
-
-            return strOtherClassCss;
-        }
-
-        /// <summary>
-        /// The retrieve column custom format.
-        /// </summary>
-        /// <param name="objPropertyInfo">
-        /// The obj Property Info.
-        /// </param>
-        /// <param name="RowIndex">
-        /// The row index.
-        /// </param>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
-        public static string RetrieveColumnCustomFormat(PropertyInfo objPropertyInfo, int RowIndex)
-        {
-            CustomFormatAttribute[] CustomFormatAttributeList =
-                (CustomFormatAttribute[])objPropertyInfo.GetCustomAttributes(typeof(CustomFormatAttribute), false);
-
-            if (CustomFormatAttributeList.Length > 0)
-            {
-                CustomFormatAttribute eCustomFormatAttribute = CustomFormatAttributeList[0];
-                if (eCustomFormatAttribute.ColumnCustomFormat != GridEnums.ColumnCustomFormat.CustomFormat)
-                {
-                    DescriptionAttribute[] attributes =
-                        (DescriptionAttribute[])
-                        eCustomFormatAttribute.ColumnCustomFormat.GetType()
-                                              .GetField(eCustomFormatAttribute.ColumnCustomFormat.ToString())
-                                              .GetCustomAttributes(typeof(DescriptionAttribute), false);
-                    return attributes.Length > 0 ? attributes[0].Description : string.Empty;
-                }
-
-                return eCustomFormatAttribute.CustomFormat;
-            }
-
-            return string.Empty;
         }
     }
 }
