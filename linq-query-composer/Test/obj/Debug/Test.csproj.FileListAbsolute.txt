@@ -1,0 +1,6 @@
+C:\Users\AmmarW8\Documents\GitHub\linq-query-composer\linq-query-composer\Test\bin\Debug\Test.exe.config
+C:\Users\AmmarW8\Documents\GitHub\linq-query-composer\linq-query-composer\Test\bin\Debug\Test.exe
+C:\Users\AmmarW8\Documents\GitHub\linq-query-composer\linq-query-composer\Test\bin\Debug\Test.pdb
+C:\Users\AmmarW8\Documents\GitHub\linq-query-composer\linq-query-composer\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\AmmarW8\Documents\GitHub\linq-query-composer\linq-query-composer\Test\obj\Debug\Test.exe
+C:\Users\AmmarW8\Documents\GitHub\linq-query-composer\linq-query-composer\Test\obj\Debug\Test.pdb
