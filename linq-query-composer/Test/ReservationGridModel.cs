@@ -12,20 +12,8 @@
 namespace Travel.Agency.BusnissLogic.Models.SearchModels.GridModels
 {
     using System.ComponentModel.DataAnnotations;
-
-    using Travel.Agency.EntityFramework;
-    using Travel.Agency.RazorGrid.GridAttributes;
     using Travel.Agency.RazorGrid.GridResources;
 
-    /// <summary>
-    /// The reservation grid model.
-    /// </summary>
-    [GridAction(Action = "data-add-link", ActionVal = "GeneralInfo?ReservationID=0,Reservations,Reservations")]
-    [GridAction(Action = "data-edit-link", ActionVal = "GeneralInfo?ReservationID=,Reservations,Reservations")]
-    [GridAction(Action = "data-delete-link", ActionVal = "DeleteBatchReservation,Reservations,Reservations")]
-    [GridAction(Action = "data-search-link", ActionVal = "GetReservationForSearch,Reservations,Reservations")]
-    [GridAction(Action = "data-activate-link", ActionVal = "ActiveBatchReservation,Reservations,Reservations")]
-    [GridAction(Action = "data-unactivate-link", ActionVal = "DeactiveBatchReservation,Reservations,Reservations")]
     public class ReservationGridModel : GridModel<Reservation, ReservationGridModel>
     {
         /// <summary>

@@ -19,6 +19,7 @@ namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData.LambdaHelper
     using System.Reflection;
 
     using Travel.Agency.RazorGrid.Helpers;
+    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
 
     public class LambdaExpressionHelper
     {

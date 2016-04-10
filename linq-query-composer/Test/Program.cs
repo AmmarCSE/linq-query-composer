@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Travel.Agency.BusnissLogic.Models.SearchModels.GridModels;
+using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
 
 namespace Test
 {
@@ -11,11 +13,11 @@ namespace Test
         static void Main(string[] args)
         {
             var searchItems = new List<FilterSearchItem>();
+            ReservationGridModel gridModel = new ReservationGridModel();
+            IQueryable queryableSource = gridModel.GetRawGridData(searchItems);
 
-            IQueryable queryableSource = searchModel.GridModel.GetRawGridData(searchItems);
-
-            int PageCount;
-            dynamic gridData = searchModel.GridModel.SelectGridDataForGridModel(
+            int PageCount, pageIndex = 0;
+            dynamic gridData = gridModel.SelectGridDataForGridModel(
                 queryableSource, searchItems, pageIndex, out PageCount);
         }
     }
