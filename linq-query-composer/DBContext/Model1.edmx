@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TAS_DevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TAS_DevModelStoreContainer">
+          <EntitySet Name="Reservations" EntityType="TAS_DevModel.Store.Reservations" store:Type="Tables" Schema="Core" />
+          <EntitySet Name="Hotels" EntityType="TAS_DevModel.Store.Hotels" store:Type="Tables" Schema="DataSettings" />
+          <EntitySet Name="ReservationStatuses" EntityType="TAS_DevModel.Store.ReservationStatuses" store:Type="Tables" Schema="DataSettings" />
+          <AssociationSet Name="FK_Reservations_Hotels" Association="TAS_DevModel.Store.FK_Reservations_Hotels">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_ReservationStatuses" Association="TAS_DevModel.Store.FK_Reservations_ReservationStatuses">
+            <End Role="ReservationStatuses" EntitySet="ReservationStatuses" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="int" Nullable="false" />
+          <Property Name="OperatorID" Type="int" Nullable="false" />
+          <Property Name="SequanceID" Type="bigint" Nullable="false" />
+          <Property Name="FromDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="DocumnetID" Type="int" />
+          <Property Name="GuestName" Type="nvarchar" MaxLength="250" />
+          <Property Name="NumberOfAdults" Type="int" />
+          <Property Name="NumberOfChildren" Type="int" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="NationalityID" Type="int" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="250" />
+          <Property Name="TermsAndConditionID" Type="int" />
+          <Property Name="HotelRservationAccountID" Type="int" />
+          <Property Name="VoucherNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="HotelConfirmation" Type="nvarchar" MaxLength="250" />
+          <Property Name="AccountFileNumber" Type="nvarchar" MaxLength="250" />
+          <Property Name="HotelOD" Type="nvarchar" MaxLength="250" />
+          <Property Name="ClientOD" Type="nvarchar" MaxLength="250" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ReservationTypeID" Type="int" />
+          <Property Name="ReservationStatusID" Type="int" />
+          <Property Name="ClientRemarks" Type="nvarchar(max)" />
+          <Property Name="HotelRemarks" Type="nvarchar(max)" />
+          <Property Name="AgentRemarks" Type="nvarchar(max)" />
+          <Property Name="HotelPaymentTypeID" Type="int" />
+          <Property Name="ClientPaymentTypeID" Type="int" />
+          <Property Name="DocumentNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="OperatorCustomerID" Type="int" Nullable="false" />
+          <Property Name="OperatorAgentID" Type="int" />
+          <Property Name="HotelReserveNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="WebReserveNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="BankNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ClientNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostToAccount" Type="bit" />
+          <Property Name="ReservationDate" Type="datetime" />
+          <Property Name="ProfileID" Type="int" />
+          <Property Name="HasJV" Type="bit" Nullable="false" />
+          <Property Name="HotelOT" Type="time" />
+          <Property Name="ClientOT" Type="time" />
+          <Property Name="CancellationReasonsID" Type="int" />
+          <Property Name="HotelOptionDateTime" Type="datetime" />
+          <Property Name="ClientOptionDateTime" Type="datetime" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="GeneratedImageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassportImageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CancellationDate" Type="datetime" />
+          <Property Name="TransactionId" Type="bigint" />
+          <Property Name="SalesmanId" Type="int" />
+          <Property Name="JvDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Hotels">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HotelName" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="SequenceID" Type="bigint" Nullable="false" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="HotelCategoryID" Type="int" Nullable="false" />
+          <Property Name="Website" Type="nvarchar" MaxLength="250" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="AppearInHotelAvailability" Type="bit" Nullable="false" />
+          <Property Name="AppearInWeb" Type="bit" Nullable="false" />
+          <Property Name="CostEquPrice" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="AccountNoID" Type="int" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CostCenterID" Type="int" />
+          <Property Name="AgentAccountantID" Type="int" />
+          <Property Name="IncomeAccountID" Type="int" />
+          <Property Name="IncomeAccountName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PurchaseAccountID" Type="int" />
+          <Property Name="PurchaseAccountName" Type="nvarchar" MaxLength="255" />
+          <Property Name="HotelGroupID" Type="int" />
+        </EntityType>
+        <EntityType Name="ReservationStatuses">
+          <Key>
+            <PropertyRef Name="ReservationStatusID" />
+          </Key>
+          <Property Name="ReservationStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <Association Name="FK_Reservations_Hotels">
+          <End Role="Hotels" Type="TAS_DevModel.Store.Hotels" Multiplicity="1" />
+          <End Role="Reservations" Type="TAS_DevModel.Store.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_ReservationStatuses">
+          <End Role="ReservationStatuses" Type="TAS_DevModel.Store.ReservationStatuses" Multiplicity="0..1" />
+          <End Role="Reservations" Type="TAS_DevModel.Store.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReservationStatuses">
+              <PropertyRef Name="ReservationStatusID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="ReservationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TAS_DevModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TAS_DevEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Reservations" EntityType="TAS_DevModel.Reservation" />
+          <EntitySet Name="Hotels" EntityType="TAS_DevModel.Hotel" />
+          <EntitySet Name="ReservationStatuses" EntityType="TAS_DevModel.ReservationStatus" />
+          <AssociationSet Name="FK_Reservations_Hotels" Association="TAS_DevModel.FK_Reservations_Hotels">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_ReservationStatuses" Association="TAS_DevModel.FK_Reservations_ReservationStatuses">
+            <End Role="ReservationStatuses" EntitySet="ReservationStatuses" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="Int32" Nullable="false" />
+          <Property Name="OperatorID" Type="Int32" Nullable="false" />
+          <Property Name="SequanceID" Type="Int64" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DocumnetID" Type="Int32" />
+          <Property Name="GuestName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="NumberOfAdults" Type="Int32" />
+          <Property Name="NumberOfChildren" Type="Int32" />
+          <Property Name="MobileNumber" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="NationalityID" Type="Int32" />
+          <Property Name="Contact" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="TermsAndConditionID" Type="Int32" />
+          <Property Name="HotelRservationAccountID" Type="Int32" />
+          <Property Name="VoucherNumber" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="HotelConfirmation" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="AccountFileNumber" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="HotelOD" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ClientOD" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ReservationTypeID" Type="Int32" />
+          <Property Name="ReservationStatusID" Type="Int32" />
+          <Property Name="ClientRemarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="HotelRemarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AgentRemarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="HotelPaymentTypeID" Type="Int32" />
+          <Property Name="ClientPaymentTypeID" Type="Int32" />
+          <Property Name="DocumentNumber" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="OperatorCustomerID" Type="Int32" Nullable="false" />
+          <Property Name="OperatorAgentID" Type="Int32" />
+          <Property Name="HotelReserveNumber" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="WebReserveNumber" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="BankNumber" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ClientNumber" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PostToAccount" Type="Boolean" />
+          <Property Name="ReservationDate" Type="DateTime" Precision="3" />
+          <Property Name="ProfileID" Type="Int32" />
+          <Property Name="HasJV" Type="Boolean" Nullable="false" />
+          <Property Name="HotelOT" Type="Time" Precision="7" />
+          <Property Name="ClientOT" Type="Time" Precision="7" />
+          <Property Name="CancellationReasonsID" Type="Int32" />
+          <Property Name="HotelOptionDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ClientOptionDateTime" Type="DateTime" Precision="3" />
+          <Property Name="PassportNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GeneratedImageName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PassportImageName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CancellationDate" Type="DateTime" Precision="3" />
+          <Property Name="TransactionId" Type="Int64" />
+          <Property Name="SalesmanId" Type="Int32" />
+          <Property Name="JvDescription" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Hotel" Relationship="TAS_DevModel.FK_Reservations_Hotels" FromRole="Reservations" ToRole="Hotels" />
+          <NavigationProperty Name="ReservationStatus" Relationship="TAS_DevModel.FK_Reservations_ReservationStatuses" FromRole="Reservations" ToRole="ReservationStatuses" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelName" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="SequenceID" Type="Int64" Nullable="false" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="HotelCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Website" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="AppearInHotelAvailability" Type="Boolean" Nullable="false" />
+          <Property Name="AppearInWeb" Type="Boolean" Nullable="false" />
+          <Property Name="CostEquPrice" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="AccountNoID" Type="Int32" />
+          <Property Name="AccountName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="CostCenterID" Type="Int32" />
+          <Property Name="AgentAccountantID" Type="Int32" />
+          <Property Name="IncomeAccountID" Type="Int32" />
+          <Property Name="IncomeAccountName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PurchaseAccountID" Type="Int32" />
+          <Property Name="PurchaseAccountName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="HotelGroupID" Type="Int32" />
+          <NavigationProperty Name="Reservations" Relationship="TAS_DevModel.FK_Reservations_Hotels" FromRole="Hotels" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="ReservationStatus">
+          <Key>
+            <PropertyRef Name="ReservationStatusID" />
+          </Key>
+          <Property Name="ReservationStatusID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="Reservations" Relationship="TAS_DevModel.FK_Reservations_ReservationStatuses" FromRole="ReservationStatuses" ToRole="Reservations" />
+        </EntityType>
+        <Association Name="FK_Reservations_Hotels">
+          <End Role="Hotels" Type="TAS_DevModel.Hotel" Multiplicity="1" />
+          <End Role="Reservations" Type="TAS_DevModel.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_ReservationStatuses">
+          <End Role="ReservationStatuses" Type="TAS_DevModel.ReservationStatus" Multiplicity="0..1" />
+          <End Role="Reservations" Type="TAS_DevModel.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReservationStatuses">
+              <PropertyRef Name="ReservationStatusID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="ReservationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TAS_DevModelStoreContainer" CdmEntityContainer="TAS_DevEntities1">
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="TAS_DevModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+                <ScalarProperty Name="SequanceID" ColumnName="SequanceID" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="DocumnetID" ColumnName="DocumnetID" />
+                <ScalarProperty Name="GuestName" ColumnName="GuestName" />
+                <ScalarProperty Name="NumberOfAdults" ColumnName="NumberOfAdults" />
+                <ScalarProperty Name="NumberOfChildren" ColumnName="NumberOfChildren" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="NationalityID" ColumnName="NationalityID" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="TermsAndConditionID" ColumnName="TermsAndConditionID" />
+                <ScalarProperty Name="HotelRservationAccountID" ColumnName="HotelRservationAccountID" />
+                <ScalarProperty Name="VoucherNumber" ColumnName="VoucherNumber" />
+                <ScalarProperty Name="HotelConfirmation" ColumnName="HotelConfirmation" />
+                <ScalarProperty Name="AccountFileNumber" ColumnName="AccountFileNumber" />
+                <ScalarProperty Name="HotelOD" ColumnName="HotelOD" />
+                <ScalarProperty Name="ClientOD" ColumnName="ClientOD" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ReservationTypeID" ColumnName="ReservationTypeID" />
+                <ScalarProperty Name="ReservationStatusID" ColumnName="ReservationStatusID" />
+                <ScalarProperty Name="ClientRemarks" ColumnName="ClientRemarks" />
+                <ScalarProperty Name="HotelRemarks" ColumnName="HotelRemarks" />
+                <ScalarProperty Name="AgentRemarks" ColumnName="AgentRemarks" />
+                <ScalarProperty Name="HotelPaymentTypeID" ColumnName="HotelPaymentTypeID" />
+                <ScalarProperty Name="ClientPaymentTypeID" ColumnName="ClientPaymentTypeID" />
+                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+                <ScalarProperty Name="OperatorCustomerID" ColumnName="OperatorCustomerID" />
+                <ScalarProperty Name="OperatorAgentID" ColumnName="OperatorAgentID" />
+                <ScalarProperty Name="HotelReserveNumber" ColumnName="HotelReserveNumber" />
+                <ScalarProperty Name="WebReserveNumber" ColumnName="WebReserveNumber" />
+                <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+                <ScalarProperty Name="ClientNumber" ColumnName="ClientNumber" />
+                <ScalarProperty Name="PostToAccount" ColumnName="PostToAccount" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+                <ScalarProperty Name="HasJV" ColumnName="HasJV" />
+                <ScalarProperty Name="HotelOT" ColumnName="HotelOT" />
+                <ScalarProperty Name="ClientOT" ColumnName="ClientOT" />
+                <ScalarProperty Name="CancellationReasonsID" ColumnName="CancellationReasonsID" />
+                <ScalarProperty Name="HotelOptionDateTime" ColumnName="HotelOptionDateTime" />
+                <ScalarProperty Name="ClientOptionDateTime" ColumnName="ClientOptionDateTime" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="GeneratedImageName" ColumnName="GeneratedImageName" />
+                <ScalarProperty Name="PassportImageName" ColumnName="PassportImageName" />
+                <ScalarProperty Name="CancellationDate" ColumnName="CancellationDate" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="SalesmanId" ColumnName="SalesmanId" />
+                <ScalarProperty Name="JvDescription" ColumnName="JvDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="TAS_DevModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotels">
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SequenceID" ColumnName="SequenceID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="HotelCategoryID" ColumnName="HotelCategoryID" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="AppearInHotelAvailability" ColumnName="AppearInHotelAvailability" />
+                <ScalarProperty Name="AppearInWeb" ColumnName="AppearInWeb" />
+                <ScalarProperty Name="CostEquPrice" ColumnName="CostEquPrice" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AccountNoID" ColumnName="AccountNoID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="CostCenterID" ColumnName="CostCenterID" />
+                <ScalarProperty Name="AgentAccountantID" ColumnName="AgentAccountantID" />
+                <ScalarProperty Name="IncomeAccountID" ColumnName="IncomeAccountID" />
+                <ScalarProperty Name="IncomeAccountName" ColumnName="IncomeAccountName" />
+                <ScalarProperty Name="PurchaseAccountID" ColumnName="PurchaseAccountID" />
+                <ScalarProperty Name="PurchaseAccountName" ColumnName="PurchaseAccountName" />
+                <ScalarProperty Name="HotelGroupID" ColumnName="HotelGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservationStatuses">
+            <EntityTypeMapping TypeName="TAS_DevModel.ReservationStatus">
+              <MappingFragment StoreEntitySet="ReservationStatuses">
+                <ScalarProperty Name="ReservationStatusID" ColumnName="ReservationStatusID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
