@@ -16,6 +16,7 @@ namespace Travel.Agency.RazorGrid.LambdaFilters
 
     using Travel.Agency.RazorGrid.Helpers;
     using Travel.Agency.RazorGrid.LambdaFilters.FilterData;
+    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
 
     /// <summary>
     /// The grid data builder.

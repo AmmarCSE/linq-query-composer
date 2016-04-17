@@ -28,7 +28,7 @@ namespace Travel.Agency.RazorGrid.Helpers
     {
         public static List<PropertyInfo> ExtractQuickSearchProperties<TModel>()
         {
-            return typeof(TModel).GetProperties().Where(p => Attribute.IsDefined(p, typeof(QuickSearchAttribute), false)).ToList();
+            return null;
         }
         /// <summary>
         /// The extract grid model properties.
