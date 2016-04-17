@@ -9,7 +9,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Travel.Agency.RazorGrid.Helpers
+namespace Linq.Query.Composer.Helpers
 {
     using System;
     using System.Collections.Generic;

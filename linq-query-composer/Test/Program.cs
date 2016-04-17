@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Travel.Agency.BusnissLogic.Models.SearchModels.GridModels;
-using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
+using Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels;
 
 namespace Test
 {

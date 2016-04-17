@@ -9,7 +9,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Travel.Agency.RazorGrid.GridAttributes
+namespace Linq.Query.Composer.GridAttributes
 {
     using System;
 

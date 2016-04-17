@@ -9,7 +9,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData.LambdaHelper
+namespace Linq.Query.Composer.LambdaFilters.FilterData.LambdaHelper
 {
     using System;
     using System.Collections.Generic;
@@ -18,8 +18,8 @@ namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData.LambdaHelper
     using System.Linq.Expressions;
     using System.Reflection;
 
-    using Travel.Agency.RazorGrid.Helpers;
-    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
+    using Linq.Query.Composer.Helpers;
+    using Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels;
 
     public class LambdaExpressionHelper
     {

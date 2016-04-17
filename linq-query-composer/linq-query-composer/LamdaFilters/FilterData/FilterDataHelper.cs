@@ -9,14 +9,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData
+namespace Linq.Query.Composer.LambdaFilters.FilterData
 {
     using DBContext;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Travel.Agency.RazorGrid.LambdaFilters.FilterData.LambdaHelper;
-    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
+    using Linq.Query.Composer.LambdaFilters.FilterData.LambdaHelper;
+    using Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels;
 
     /// <summary>
     /// The filter data helper.

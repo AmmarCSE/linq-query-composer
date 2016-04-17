@@ -9,13 +9,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Travel.Agency.RazorGrid.GridResources
+namespace Linq.Query.Composer.GridResources
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using Travel.Agency.RazorGrid.LambdaFilters;
-    using Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels;
+    using Linq.Query.Composer.LambdaFilters;
+    using Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels;
 
     /// <summary>
     /// The grid model.

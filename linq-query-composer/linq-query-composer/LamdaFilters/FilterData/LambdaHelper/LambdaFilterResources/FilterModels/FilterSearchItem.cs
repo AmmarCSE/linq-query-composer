@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Travel.Agency.RazorGrid.LambdaFilters.LamdaFilterResources.FilterModels
+namespace Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels
 {
     public class FilterSearchItem
     {

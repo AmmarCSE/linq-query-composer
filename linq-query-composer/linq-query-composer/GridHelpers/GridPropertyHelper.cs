@@ -9,7 +9,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Travel.Agency.RazorGrid.Helpers
+namespace Linq.Query.Composer.Helpers
 {
     using System;
     using System.Collections.Generic;
@@ -18,8 +18,8 @@ namespace Travel.Agency.RazorGrid.Helpers
     using System.Linq;
     using System.Reflection;
 
-    using Travel.Agency.RazorGrid.GridAttributes;
-    using Travel.Agency.RazorGrid.GridResources;
+    using Linq.Query.Composer.GridAttributes;
+    using Linq.Query.Composer.GridResources;
 
     /// <summary>
     /// The grid property helper.

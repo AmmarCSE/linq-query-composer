@@ -13,8 +13,8 @@ namespace Travel.Agency.BusnissLogic.Models.SearchModels.GridModels
 {
     using DBContext;
     using System.ComponentModel.DataAnnotations;
-    using Travel.Agency.RazorGrid.GridAttributes;
-    using Travel.Agency.RazorGrid.GridResources;
+    using Linq.Query.Composer.GridAttributes;
+    using Linq.Query.Composer.GridResources;
 
     public class ReservationGridModel : GridModel<Reservation, ReservationGridModel>
     {
