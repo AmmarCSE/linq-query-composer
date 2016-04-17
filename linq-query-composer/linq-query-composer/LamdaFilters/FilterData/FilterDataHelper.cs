@@ -11,6 +11,7 @@
 
 namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData
 {
+    using DBContext;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -45,8 +46,8 @@ namespace Travel.Agency.RazorGrid.LambdaFilters.FilterData
             where TEntity : class
         {
             LambdaExpressionHelper expressionHelper = new LambdaExpressionHelper();
-
-            IQueryable<TEntity> queryable = ContextHelper.GetContext().Set<TEntity>();
+            TAS_DevEntities1 dbContext = new TAS_DevEntities1();
+            IQueryable<TEntity> queryable = dbContext.Set<TEntity>();
 
             if (!isCommon)
             {

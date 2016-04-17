@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linq-query-composer", "linq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{419FA5F3-1D83-4BBD-BED2-6482B4797425}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBContext", "DBContext\DBContext.csproj", "{E5A8C7E3-8460-445E-A6CF-E5DF0AFD6801}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{419FA5F3-1D83-4BBD-BED2-6482B4797425}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{419FA5F3-1D83-4BBD-BED2-6482B4797425}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{419FA5F3-1D83-4BBD-BED2-6482B4797425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A8C7E3-8460-445E-A6CF-E5DF0AFD6801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A8C7E3-8460-445E-A6CF-E5DF0AFD6801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A8C7E3-8460-445E-A6CF-E5DF0AFD6801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A8C7E3-8460-445E-A6CF-E5DF0AFD6801}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

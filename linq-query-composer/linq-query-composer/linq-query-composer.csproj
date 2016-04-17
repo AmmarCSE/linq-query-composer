@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="GridAttributes\GridComputedPropertyAttribute.cs" />
     <Compile Include="GridAttributes\GridEntityPropertyAttribute.cs" />
     <Compile Include="GridData\GridDataBuilder.cs" />
     <Compile Include="GridHelpers\GridLambdaExpressionHelper.cs" />
@@ -68,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBContext\DBContext.csproj">
+      <Project>{e5a8c7e3-8460-445e-a6cf-e5df0afd6801}</Project>
+      <Name>DBContext</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

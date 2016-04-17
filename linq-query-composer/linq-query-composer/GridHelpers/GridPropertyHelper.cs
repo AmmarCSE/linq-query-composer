@@ -56,7 +56,7 @@ namespace Travel.Agency.RazorGrid.Helpers
             return
                 new List<PropertyInfo>(
                     typeof(TGridModel).GetProperties()
-                                      );
+                                      .Where(p => !Attribute.IsDefined(p, typeof(GridComputedPropertyAttribute), false)));
         }
 
         /// <summary>
