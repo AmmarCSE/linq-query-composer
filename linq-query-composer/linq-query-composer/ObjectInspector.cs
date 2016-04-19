@@ -1,4 +1,4 @@
-﻿namespace Linq.Query.Composer.Helpers
+﻿namespace Linq.Query.Composer
 {
     using System;
     using System.Collections.Generic;
@@ -7,10 +7,10 @@
     using System.Linq;
     using System.Reflection;
 
-    using Linq.Query.Composer.GridAttributes;
-    using Linq.Query.Composer.GridResources;
+    using Linq.Query.Composer.Model;
+    using Linq.Query.Composer.Model.Attribute;
 
-    public static class GridPropertyHelper
+    public static class ObjectInspector
     {
         public static List<PropertyInfo> ExtractQuickSearchProperties<TModel>()
         {
@@ -26,7 +26,7 @@
             return
                 new List<PropertyInfo>(
                     typeof(TGridModel).GetProperties()
-                                      .Where(p => !Attribute.IsDefined(p, typeof(GridComputedPropertyAttribute), false)));
+                                      .Where(p => !Attribute.IsDefined(p, typeof(DataComputedPropertyAttribute), false)));
         }
 
         public static IList<PropertyInfo> ExtractKeyProperties(IList<PropertyInfo> properties)
@@ -41,8 +41,8 @@
 
         public static dynamic RetrieveGridEntityPropertyPath(PropertyInfo property)
         {
-            GridEntityPropertyAttribute attribute = 
-                (GridEntityPropertyAttribute)property.GetCustomAttributes(typeof(GridEntityPropertyAttribute), false)
+            DataEntityPropertyAttribute attribute = 
+                (DataEntityPropertyAttribute)property.GetCustomAttributes(typeof(DataEntityPropertyAttribute), false)
                     .First();
             attribute.TargetedPropertyPath = attribute.TargetedPropertyPath ?? new string[] { };
 

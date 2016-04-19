@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Travel.Agency.BusnissLogic.Models.SearchModels.GridModels;
-using Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels;
+using Linq.Query.Composer.Model;
 
 namespace Test
 {
@@ -12,7 +12,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var searchItems = new List<FilterSearchItem>();
+            var searchItems = new List<FilterItem>();
             ReservationGridModel gridModel = new ReservationGridModel();
             IQueryable queryableSource = gridModel.GetRawGridData(searchItems);
 

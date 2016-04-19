@@ -13,56 +13,56 @@ namespace Travel.Agency.BusnissLogic.Models.SearchModels.GridModels
 {
     using DBContext;
     using System.ComponentModel.DataAnnotations;
-    using Linq.Query.Composer.GridAttributes;
-    using Linq.Query.Composer.GridResources;
+    using Linq.Query.Composer.Model;
+    using Linq.Query.Composer.Model.Attribute;
 
-    public class ReservationGridModel : GridModel<Reservation, ReservationGridModel>
+    public class ReservationGridModel : DataModel<Reservation, ReservationGridModel>
     {
         /// <summary>
         /// Gets or sets the reservation id.
         /// </summary>
         [Key]
-        [GridEntityProperty(TargetedPropertyPath = new[] { "ReservationID" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "ReservationID" })]
         public int ReservationId { get; set; }
 
         /// <summary>
         /// Gets or sets the sequance id.
         /// </summary>
-        [GridEntityProperty(TargetedPropertyPath = new[] { "SequanceID" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "SequanceID" })]
         public long SequanceID { get; set; }
 
         /// <summary>
         /// Gets or sets the str from date.
         /// </summary>
-        [GridEntityProperty(TargetedPropertyPath = new[] { "FromDate" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "FromDate" })]
         public string strFromDate { get; set; }
 
         /// <summary>
         /// Gets or sets the str to date.
         /// </summary>
-        [GridEntityProperty(TargetedPropertyPath = new[] { "ToDate" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "ToDate" })]
         public string strToDate { get; set; }
 
         /// <summary>
         /// Gets or sets the hotel name.
         /// </summary>
-        [GridEntityProperty(TargetedPropertyPath = new[] { "Hotel", "HotelName" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "Hotel", "HotelName" })]
         public string HotelName { get; set; }
 
         /// <summary>
         /// Gets or sets the guest name.
         /// </summary>
-        [GridEntityProperty(TargetedPropertyPath = new[] { "GuestName" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "GuestName" })]
         public string GuestName { get; set; }
 
         /// <summary>
         /// Gets or sets the post to account.
         /// </summary>
         [Key]
-        [GridEntityProperty(TargetedPropertyPath = new[] { "PostToAccount" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "PostToAccount" })]
         public bool? PostToAccount { get; set; }
 
-        [GridComputedProperty]
+        [DataComputedProperty]
         public string PostToAccountString
         {
             get
@@ -78,7 +78,7 @@ namespace Travel.Agency.BusnissLogic.Models.SearchModels.GridModels
             }
         }*/
 
-        [GridEntityProperty(TargetedPropertyPath = new[] { "ReservationStatus", "Name" })]
+        [DataEntityProperty(TargetedPropertyPath = new[] { "ReservationStatus", "Name" })]
         public string ReservationStatusName { get; set; }
     }
 }

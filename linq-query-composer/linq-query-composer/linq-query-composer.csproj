@@ -49,26 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="GridAttributes\GridComputedPropertyAttribute.cs" />
-    <Compile Include="GridAttributes\GridEntityPropertyAttribute.cs" />
-    <Compile Include="GridData\GridDataBuilder.cs" />
-    <Compile Include="GridHelpers\GridLambdaExpressionHelper.cs" />
-    <Compile Include="GridHelpers\GridPropertyHelper.cs" />
-    <Compile Include="GridResources\GridModel.cs" />
-    <Compile Include="GridResources\IGridModel.cs" />
-    <Compile Include="LamdaFilters\FilterData\FilterDataHelper.cs" />
-    <Compile Include="LamdaFilters\FilterData\LambdaHelper\LambdaExpressionHelper.cs" />
-    <Compile Include="LamdaFilters\FilterData\LambdaHelper\LambdaFilterResources\FilterModels\FilterSearchItem.cs" />
+    <Compile Include="ObjectInspector.cs" />
+    <Compile Include="LambdaExpressionGenerator.cs" />
+    <Compile Include="Model\Attribute\DataComputedPropertyAttribute.cs" />
+    <Compile Include="Model\Attribute\DataEntityPropertyAttribute.cs" />
+    <Compile Include="Model\FilterItem.cs" />
+    <Compile Include="Model\DataModel.cs" />
+    <Compile Include="Model\IDataModel.cs" />
+    <Compile Include="Operator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchResources\SearchAssembler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBContext\DBContext.csproj">
