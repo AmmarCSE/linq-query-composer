@@ -1,15 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GridDataBuilder.cs" company="AnnabSoft">
-//   The Original Code is TAS.
-//   //   The Initial Developer of the Original Code is AnnabSoft.
-//   //   All Rights Reserved.
-// </copyright>
-// <summary>
-//   Defines Grid Data Buildere.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Linq.Query.Composer.LambdaFilters
+﻿namespace Linq.Query.Composer.LambdaFilters
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -18,29 +7,10 @@ namespace Linq.Query.Composer.LambdaFilters
     using Linq.Query.Composer.LambdaFilters.FilterData;
     using Linq.Query.Composer.LambdaFilters.LamdaFilterResources.FilterModels;
 
-    /// <summary>
-    /// The grid data builder.
-    /// </summary>
     public class GridDataBuilder
     {
-        /// <summary>
-        /// The page size.
-        /// </summary>
         private readonly int pageSize = 10;
 
-        /// <summary>
-        /// The get raw grid data for grid model.
-        /// </summary>
-        /// <param name="searchItems">
-        /// The search items.
-        /// </param>
-        /// <typeparam name="TEntity">
-        /// </typeparam>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="IQueryable"/>.
-        /// </returns>
         public IQueryable<TEntity> GetRawGridDataForGridModel<TEntity, TModel>(List<FilterSearchItem> searchItems)
             where TEntity : class
         {
@@ -48,28 +18,6 @@ namespace Linq.Query.Composer.LambdaFilters
                 searchItems, false, GridPropertyHelper.ExtractQuickSearchProperties<TModel>());
         }
 
-        /// <summary>
-        /// The select grid data for grid model.
-        /// </summary>
-        /// <param name="queryableSource">
-        /// The queryable source.
-        /// </param>
-        /// <param name="searchItems">
-        /// The search items.
-        /// </param>
-        /// <param name="pageIndex">
-        /// The page index.
-        /// </param>
-        /// <param name="pageCount">
-        /// The page count.
-        /// </param>
-        /// <typeparam name="TEntity">
-        /// </typeparam>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <returns>
-        /// The List.
-        /// </returns>
         public List<TModel> SelectGridDataForGridModel<TEntity, TModel>(
             IQueryable queryableSource, List<FilterSearchItem> searchItems, int pageIndex, out int pageCount)
             where TEntity : class

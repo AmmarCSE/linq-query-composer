@@ -1,15 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GridLambdaExpressionHelper.cs" company="AnnabSoft">
-//   The Original Code is TAS.
-//   The Initial Developer of the Original Code is AnnabSoft.
-//   All Rights Reserved.
-// </copyright>
-// <summary>
-//   Defines Grid Lambda Expression Helper.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Linq.Query.Composer.Helpers
+﻿namespace Linq.Query.Composer.Helpers
 {
     using System;
     using System.Collections.Generic;
@@ -19,68 +8,19 @@ namespace Linq.Query.Composer.Helpers
     using System.Linq.Expressions;
     using System.Reflection;
 
-    /*// Summary:
-    //     Represents support for the HTML label element in an ASP.NET MVC view.*/
-
-    /// <summary>
-    /// The grid lambda expression helper.
-    /// </summary>
     public static class GridLambdaExpressionHelper
     {
-        /// <summary>
-        /// The create type for search grid model.
-        /// </summary>
-        /// <param name="gridData">
-        /// The grid data.
-        /// </param>
-        /// <param name="pageCount">
-        /// The page count.
-        /// </param>
-        /// <typeparam name="TGridModel">
-        /// </typeparam>
-        /// <returns>
-        /// The dynamic.
-        /// </returns>
         public static dynamic CreateTypeForSearchGridModel<TGridModel>(List<TGridModel> gridData, int pageCount)
         {
             return new { Data = gridData, PageCount = pageCount };
         }
 
-        /// <summary>
-        /// The search grid model expression wrapper.
-        /// </summary>
-        /// <param name="model">
-        /// The model.
-        /// </param>
-        /// <param name="gridData">
-        /// The grid data.
-        /// </param>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <typeparam name="TGridModel">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TModel, List<TGridModel>>> SearchGridModelExpressionWrapper<TModel, TGridModel>(
             TModel model, List<TGridModel> gridData)
         {
             return GenerateSearchGridModelExpression<TModel, TGridModel>(gridData);
         }
 
-        /// <summary>
-        /// The generate search grid model expression.
-        /// </summary>
-        /// <param name="gridData">
-        /// The grid data.
-        /// </param>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <typeparam name="TGridModel">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TModel, List<TGridModel>>> GenerateSearchGridModelExpression<TModel, TGridModel>(
             List<TGridModel> gridData)
         {
@@ -92,14 +32,6 @@ namespace Linq.Query.Composer.Helpers
                 expressionBody, new[] { parameter });
         }
 
-        /// <summary>
-        /// The generate order by expression.
-        /// </summary>
-        /// <typeparam name="TEntity">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TEntity, long>> GenerateOrderByExpression<TEntity>()
         {
             ParameterExpression parameter = Expression.Parameter(typeof(TEntity), "entity");
@@ -118,63 +50,18 @@ namespace Linq.Query.Composer.Helpers
             return Expression.Lambda<Func<TEntity, long>>(expressionBody, new[] { parameter });
         }
 
-        /// <summary>
-        /// The generate header expression.
-        /// </summary>
-        /// <param name="property">
-        /// The property.
-        /// </param>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <typeparam name="TProperty">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TModel, TProperty>> GenerateHeaderExpression<TModel, TProperty>(
             PropertyInfo property)
         {
             return GenerateExpression<TModel, TProperty>(property, null);
         }
 
-        /// <summary>
-        /// The generate body expression.
-        /// </summary>
-        /// <param name="property">
-        /// The property.
-        /// </param>
-        /// <param name="rowIndex">
-        /// The row index.
-        /// </param>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <typeparam name="TProperty">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TModel, TProperty>> GenerateBodyExpression<TModel, TProperty>(
             PropertyInfo property, int? rowIndex)
         {
             return GenerateExpression<TModel, TProperty>(property, rowIndex.HasValue ? rowIndex.Value : 0);
         }
 
-        /// <summary>
-        /// The generate expression.
-        /// </summary>
-        /// <param name="property">
-        /// The property.
-        /// </param>
-        /// <param name="rowIndex">
-        /// The row index.
-        /// </param>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <typeparam name="TProperty">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TModel, TProperty>> GenerateExpression<TModel, TProperty>(PropertyInfo property, int? rowIndex)
         {
             ParameterExpression fieldName = Expression.Parameter(typeof(TModel), "m");
@@ -186,16 +73,6 @@ namespace Linq.Query.Composer.Helpers
             return Expression.Lambda<Func<TModel, TProperty>>(propertyExpr, fieldName);
         }
 
-        /// <summary>
-        /// The get select clause.
-        /// </summary>
-        /// <typeparam name="TEntity">
-        /// </typeparam>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression<Func<TEntity, TModel>> GetSelectClause<TEntity, TModel>()
         {
             ParameterExpression parameter = Expression.Parameter(typeof(TEntity), "entity");
@@ -211,26 +88,6 @@ namespace Linq.Query.Composer.Helpers
         }
 
         // recursive method
-
-        /// <summary>
-        /// The assemble select members.
-        /// </summary>
-        /// <param name="modelProperties">
-        /// The model properties.
-        /// </param>
-        /// <param name="memberBindings">
-        /// The member bindings.
-        /// </param>
-        /// <param name="parameter">
-        /// The parameter.
-        /// </param>
-        /// <typeparam name="TEntity">
-        /// </typeparam>
-        /// <typeparam name="TModel">
-        /// </typeparam>
-        /// <returns>
-        /// The MemberBinding[].
-        /// </returns>
         public static MemberBinding[] AssembleSelectMembers<TEntity, TModel>(
             List<PropertyInfo> modelProperties, List<MemberBinding> memberBindings, ParameterExpression parameter)
         {
@@ -258,19 +115,6 @@ namespace Linq.Query.Composer.Helpers
         }
 
         // recursive method
-
-        /// <summary>
-        /// The assemble property.
-        /// </summary>
-        /// <param name="member">
-        /// The member.
-        /// </param>
-        /// <param name="propertyPath">
-        /// The property path.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression AssembleProperty(Expression member, List<string> propertyPath)
         {
             if (propertyPath.Count > 0)
@@ -301,18 +145,6 @@ namespace Linq.Query.Composer.Helpers
             return member;
         }
 
-        /// <summary>
-        /// The select inner collection.
-        /// </summary>
-        /// <param name="member">
-        /// The member.
-        /// </param>
-        /// <param name="propertyPath">
-        /// The property path.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression SelectInnerCollection(Expression member, List<string> propertyPath)
         {
             Type collectionType = member.Type.GetGenericArguments().First();
@@ -335,15 +167,6 @@ namespace Linq.Query.Composer.Helpers
                 innerSelectExpression);
         }
 
-        /// <summary>
-        /// The transform date string.
-        /// </summary>
-        /// <param name="entityProperty">
-        /// The entity property.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression TransformDateString(Expression entityProperty)
         {
             UnaryExpression nullableEntityDate = Expression.Convert(entityProperty, typeof(DateTime?));
@@ -375,15 +198,6 @@ namespace Linq.Query.Composer.Helpers
             return transformPredicate;
         }
 
-        /// <summary>
-        /// The transform time string.
-        /// </summary>
-        /// <param name="entityProperty">
-        /// The entity property.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Expression"/>.
-        /// </returns>
         public static Expression TransformTimeString(Expression entityProperty)
         {
             UnaryExpression nullableEntityTime = Expression.Convert(entityProperty, typeof(TimeSpan?));
@@ -404,15 +218,6 @@ namespace Linq.Query.Composer.Helpers
             return transformPredicate;
         }
 
-        /// <summary>
-        /// The get sql function string convert method.
-        /// </summary>
-        /// <param name="argumentType">
-        /// The argument type.
-        /// </param>
-        /// <returns>
-        /// The <see cref="MethodInfo"/>.
-        /// </returns>
         public static MethodInfo GetSqlFunctionStringConvertMethod(Type argumentType)
         {
             return typeof(SqlFunctions).GetMethod("StringConvert", new[] { argumentType });

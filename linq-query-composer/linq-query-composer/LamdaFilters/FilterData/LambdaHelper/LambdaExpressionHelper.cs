@@ -1,15 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LambdaExpressionHelper.cs" company="AnnabSoft">
-//   The Original Code is TAS.
-//   The Initial Developer of the Original Code is AnnabSoft.
-//   All Rights Reserved.
-// </copyright>
-// <summary>
-//   Defines Lambda Expression Helper.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Linq.Query.Composer.LambdaFilters.FilterData.LambdaHelper
+﻿namespace Linq.Query.Composer.LambdaFilters.FilterData.LambdaHelper
 {
     using System;
     using System.Collections.Generic;
