@@ -9,6 +9,7 @@
 
     using Linq.Query.Composer.Model;
     using Linq.Query.Composer.Model.Attribute;
+    using System.Data.Entity.SqlServer;
 
     public static class ObjectInspector
     {
@@ -76,6 +77,27 @@
             }
 
             return (int)typeCode;
+        }
+
+        public static MethodInfo GetStringContainsMethod()
+        {
+            return typeof(string).GetMethod("Contains", new[] { typeof(string) });
+        }
+
+        public static dynamic CreateTypeForSearchGridModel<TGridModel>(List<TGridModel> gridData, int pageCount)
+        {
+            return new { Data = gridData, PageCount = pageCount };
+        }
+
+        public static MethodInfo GetSqlFunctionDateTimeMethodInfo(string methodName)
+        {
+            return typeof(SqlFunctions).GetMethod(
+                methodName, new[] { typeof(string), typeof(DateTime?) });
+        }
+
+        public static MethodInfo GetSqlFunctionStringConvertMethod(Type argumentType)
+        {
+            return typeof(SqlFunctions).GetMethod("StringConvert", new[] { argumentType });
         }
     }
 }

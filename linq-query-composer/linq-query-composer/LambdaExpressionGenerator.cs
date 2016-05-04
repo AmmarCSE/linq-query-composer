@@ -3,9 +3,7 @@
     using Linq.Query.Composer.Model;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity.SqlServer;
     using System.Globalization;
-    //using System.Data.Objects.SqlClient;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
@@ -301,11 +299,11 @@
                     // currently, always cast to double for temporary situation to support different number types
                     entityProperty =
                         Expression.Call(
-                            LambdaExpressionGenerator.GetSqlFunctionStringConvertMethod(typeof(double?)),
+                            ObjectInspector.GetSqlFunctionStringConvertMethod(typeof(double?)),
                             Expression.Convert(entityProperty, typeof(double?)));
                 }
 
-                expression = Expression.Call(entityProperty, GetStringContainsMethod(), Expression.Constant(term));
+                expression = Expression.Call(entityProperty, ObjectInspector.GetStringContainsMethod(), Expression.Constant(term));
             }
 
             return expression;
@@ -324,7 +322,7 @@
                     propertyPath.Skip(1).ToList());
 
             Expression expressionBody = Expression.Call(
-                entityProperty, GetStringContainsMethod(), Expression.Constant(term));
+                entityProperty, ObjectInspector.GetStringContainsMethod(), Expression.Constant(term));
 
             expressionBody = Expression.Call(
                 typeof(Enumerable),
@@ -336,15 +334,6 @@
             expressionBody = Expression.Call(typeof(Enumerable), "Any", new[] { collectionType }, expressionBody);
 
             return expressionBody;
-        }
-
-        public static MethodInfo GetStringContainsMethod()
-        {
-            return typeof(string).GetMethod("Contains", new[] { typeof(string) });
-        }
-        public static dynamic CreateTypeForSearchGridModel<TGridModel>(List<TGridModel> gridData, int pageCount)
-        {
-            return new { Data = gridData, PageCount = pageCount };
         }
 
         public static Expression<Func<TModel, List<TGridModel>>> SearchGridModelExpressionWrapper<TModel, TGridModel>(
@@ -505,16 +494,14 @@
 
             MethodInfo concatStringMethod = typeof(string).GetMethod("Concat", new[] { typeof(string), typeof(string) });
 
-            MethodInfo dateNameMethod = typeof(SqlFunctions).GetMethod(
-                "DateName", new[] { typeof(string), typeof(DateTime?) });
+            MethodInfo dateNameMethod = ObjectInspector.GetSqlFunctionDateTimeMethodInfo("DateName");
 
             var datePart = Expression.Call(dateNameMethod, Expression.Constant("dd"), nullableEntityDate);
             Expression transformPredicate = Expression.Add(datePart, Expression.Constant("/"), concatStringMethod);
 
-            MethodInfo datePartMethod = typeof(SqlFunctions).GetMethod(
-                "DatePart", new[] { typeof(string), typeof(DateTime?) });
+            MethodInfo datePartMethod = ObjectInspector.GetSqlFunctionDateTimeMethodInfo("DatePart");
 
-            MethodInfo stringConvertMethod = GetSqlFunctionStringConvertMethod(typeof(double?));
+            MethodInfo stringConvertMethod = ObjectInspector.GetSqlFunctionStringConvertMethod(typeof(double?));
 
             // original month from 'MM' gives the name of the month. Therefore, do SqlFunctions.StringConvert((double)'MM') 
             // to extract digits
@@ -536,8 +523,7 @@
 
             MethodInfo concatStringMethod = typeof(string).GetMethod("Concat", new[] { typeof(string), typeof(string) });
 
-            MethodInfo dateNameMethod = typeof(SqlFunctions).GetMethod(
-                "DateName", new[] { typeof(string), typeof(TimeSpan?) });
+            MethodInfo dateNameMethod = ObjectInspector.GetSqlFunctionDateTimeMethodInfo("DateName");
 
             var datePart = Expression.Call(dateNameMethod, Expression.Constant("hh"), nullableEntityTime);
             Expression transformPredicate = Expression.Add(datePart, Expression.Constant(":"), concatStringMethod);
@@ -548,11 +534,6 @@
             transformPredicate = Expression.Add(transformPredicate, datePart, concatStringMethod);
 
             return transformPredicate;
-        }
-
-        public static MethodInfo GetSqlFunctionStringConvertMethod(Type argumentType)
-        {
-            return typeof(SqlFunctions).GetMethod("StringConvert", new[] { argumentType });
         }
     }
 }
