@@ -13,10 +13,6 @@
 
     public static class ObjectInspector
     {
-        public static List<PropertyInfo> ExtractQuickSearchProperties<TModel>()
-        {
-            return null;
-        }
         public static List<PropertyInfo> ExtractGridModelProperties<TGridModel>()
         {
             return new List<PropertyInfo>(typeof(TGridModel).GetProperties());

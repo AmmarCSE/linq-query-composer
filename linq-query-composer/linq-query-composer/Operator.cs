@@ -14,8 +14,7 @@
         public IQueryable<TEntity> GetRawGridDataForGridModel<TEntity, TModel>(List<FilterItem> searchItems)
             where TEntity : class
         {
-            return GetRawQueryable<TEntity>(
-                searchItems, false, ObjectInspector.ExtractQuickSearchProperties<TModel>());
+            return GetRawQueryable<TEntity>( searchItems, false);
         }
 
         public List<TModel> SelectGridDataForGridModel<TEntity, TModel>(
@@ -35,7 +34,7 @@
         }
 
         private static IQueryable<TEntity> GetRawQueryable<TEntity>(
-            List<FilterItem> searchItems, bool isCommon, List<PropertyInfo> quickSearchProperties)
+            List<FilterItem> searchItems, bool isCommon)
             where TEntity : class
         {
             TAS_DevEntities1 dbContext = new TAS_DevEntities1();
@@ -44,7 +43,7 @@
             if (!isCommon)
             {
                 queryable =
-                    queryable.Where(LambdaExpressionGenerator.GenerateWhereClause<TEntity>(searchItems, quickSearchProperties));
+                    queryable.Where(LambdaExpressionGenerator.GenerateWhereClause<TEntity>(searchItems));
             }
 
             return queryable;

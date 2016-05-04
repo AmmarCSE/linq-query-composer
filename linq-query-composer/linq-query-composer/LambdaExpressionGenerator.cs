@@ -54,10 +54,10 @@
         }
 
         public static Expression<Func<TMainSet, bool>> GenerateWhereClause<TMainSet>(
-            List<FilterItem> searchItems, List<PropertyInfo> quickSearchProperties)
+            List<FilterItem> searchItems)
         {
             bool isDefualtActive = searchItems.Count == 0;
-
+            
             Expression<Func<TMainSet, bool>> defaultExpression = TASTemplateWhereExpression<TMainSet>(isDefualtActive);
 
             Expression whereBody = defaultExpression.Body;
@@ -66,7 +66,7 @@
             whereBody = searchItems.Aggregate(
                 whereBody,
                 (current, searchItem) =>
-                GenerateSubWhereClause<TMainSet>(whereParameter, current, searchItem, quickSearchProperties));
+                GenerateSubWhereClause<TMainSet>(whereParameter, current, searchItem));
 
             return Expression.Lambda<Func<TMainSet, bool>>(whereBody, whereParameter);
         }
@@ -74,8 +74,7 @@
         public static Expression GenerateSubWhereClause<TMainSet>(
             ParameterExpression appendantParameter,
             Expression appendantExpression,
-            FilterItem searchItem,
-            List<PropertyInfo> quickSearchProperties)
+            FilterItem searchItem)
         {
             ConstantExpression filterValues = null;
             Expression expressionBody = null;
@@ -142,17 +141,6 @@
                 expressionBody = subArgs[1] == "GreaterThan"
                                      ? Expression.GreaterThanOrEqual(property, filterValues)
                                      : Expression.LessThanOrEqual(property, filterValues);
-            }
-            else if (searchItem.SearchType == "QuickSearch")
-            {
-                string term = searchItem.SearchData;
-
-                // recursive call
-                expressionBody = AssembleQuickSearchExpression<TMainSet>(
-                    appendantParameter,
-                    GenerateSubQuickSearchExpression<TMainSet>(appendantParameter, quickSearchProperties.First(), term),
-                    quickSearchProperties.Skip(1).ToList(),
-                    term);
             }
             else if (searchItem.SearchType == "Active")
             {
@@ -246,92 +234,6 @@
                 // any - where(w => array.contains(w.property)).Any()
                 expressionBody = Expression.Call(typeof(Enumerable), "Any", new[] { type }, expressionBody);
             }
-
-            return expressionBody;
-        }
-
-        public static Expression AssembleQuickSearchExpression<TEntity>(
-            ParameterExpression appendantParameter,
-            Expression appendantExpression,
-            List<PropertyInfo> quickSearchProperties,
-            string term)
-        {
-            if (quickSearchProperties.Count > 0)
-            {
-                PropertyInfo property = quickSearchProperties.First();
-                quickSearchProperties.RemoveAt(0);
-
-                var appendedExpression = Expression.Or(
-                    appendantExpression, GenerateSubQuickSearchExpression<TEntity>(appendantParameter, property, term));
-
-                return AssembleQuickSearchExpression<TEntity>(
-                    appendantParameter, appendedExpression, quickSearchProperties, term);
-            }
-
-            return appendantExpression;
-        }
-
-        public static Expression GenerateSubQuickSearchExpression<TEntity>(
-            ParameterExpression appendantParameter, PropertyInfo quickSearchProperty, string term)
-        {
-            Expression expression = null;
-            List<string> propertyPath = ObjectInspector.RetrieveGridEntityPropertyPath(quickSearchProperty);
-
-            if (typeof(IEnumerable<string>).IsAssignableFrom(quickSearchProperty.PropertyType))
-            {
-                MemberExpression member = Expression.MakeMemberAccess(
-                    appendantParameter, typeof(TEntity).GetProperty(propertyPath.First()));
-
-                propertyPath.RemoveAt(0);
-
-                expression = WhereForInnerCollectionQuickSearch(member, propertyPath, term);
-            }
-            else
-            {
-                Expression entityProperty =
-                    LambdaExpressionGenerator.AssembleProperty(
-                        Expression.MakeMemberAccess(
-                            appendantParameter, typeof(TEntity).GetProperty(propertyPath.First())),
-                        propertyPath.Skip(1).ToList());
-
-                if (entityProperty.Type != typeof(string))
-                {
-                    // currently, always cast to double for temporary situation to support different number types
-                    entityProperty =
-                        Expression.Call(
-                            ObjectInspector.GetSqlFunctionStringConvertMethod(typeof(double?)),
-                            Expression.Convert(entityProperty, typeof(double?)));
-                }
-
-                expression = Expression.Call(entityProperty, ObjectInspector.GetStringContainsMethod(), Expression.Constant(term));
-            }
-
-            return expression;
-        }
-
-        public static Expression WhereForInnerCollectionQuickSearch(
-            Expression member, List<string> propertyPath, string term)
-        {
-            Type collectionType = member.Type.GetGenericArguments().First();
-
-            ParameterExpression parameter = Expression.Parameter(collectionType, "collectionEntity");
-
-            Expression entityProperty =
-                LambdaExpressionGenerator.AssembleProperty(
-                    Expression.MakeMemberAccess(parameter, collectionType.GetProperty(propertyPath.First())),
-                    propertyPath.Skip(1).ToList());
-
-            Expression expressionBody = Expression.Call(
-                entityProperty, ObjectInspector.GetStringContainsMethod(), Expression.Constant(term));
-
-            expressionBody = Expression.Call(
-                typeof(Enumerable),
-                "Where",
-                new[] { collectionType },
-                member,
-                Expression.Lambda(expressionBody, new[] { parameter }));
-
-            expressionBody = Expression.Call(typeof(Enumerable), "Any", new[] { collectionType }, expressionBody);
 
             return expressionBody;
         }
