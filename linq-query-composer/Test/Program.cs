@@ -13,11 +13,11 @@ namespace Test
         static void Main(string[] args)
         {
             var searchItems = new List<FilterItem>();
-            ReservationGridModel gridModel = new ReservationGridModel();
-            IQueryable queryableSource = gridModel.GetRawGridData(searchItems);
+            ReservationDataModel gridModel = new ReservationDataModel();
+            IQueryable queryableSource = gridModel.GetRawData(searchItems);
 
             int PageCount, pageIndex = 0;
-            dynamic gridData = gridModel.SelectGridDataForGridModel(
+            dynamic data = gridModel.SelectDataForDataModel(
                 queryableSource, searchItems, pageIndex, out PageCount);
         }
     }

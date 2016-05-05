@@ -6,13 +6,13 @@
     public class DataModel<TEntity, TModel> : IDataModel
         where TEntity : class
     {
-        public dynamic GetRawGridData(List<FilterItem> searchItems)
+        public dynamic GetRawData(List<FilterItem> searchItems)
         {
             return new Operator()
                 .GetRawGridDataForGridModel<TEntity, TModel>(searchItems);
         }
 
-        public dynamic SelectGridDataForGridModel(
+        public dynamic SelectDataForDataModel(
             IQueryable queryable, List<FilterItem> searchItems, int pageIndex, out int pageCount)
         {
             return new Operator().SelectGridDataForGridModel<TEntity, TModel>(

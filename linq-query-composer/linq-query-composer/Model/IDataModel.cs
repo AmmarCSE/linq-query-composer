@@ -5,8 +5,8 @@
 
     public interface IDataModel 
     {
-        dynamic GetRawGridData(List<FilterItem> searchItems);
-        dynamic SelectGridDataForGridModel(
+        dynamic GetRawData(List<FilterItem> searchItems);
+        dynamic SelectDataForDataModel(
             IQueryable queryable, List<FilterItem> searchItems, int pageIndex, out int pageCount);
     }
 }
